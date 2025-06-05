@@ -10,19 +10,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                bat 'pip3 install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'pytest test_app.py'
+                bat 'pytest test_app.py'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh '''
+                bat '''
                 pkill -f app.py || true
                 nohup python3 app.py > app.log 2>&1 &
                 '''
