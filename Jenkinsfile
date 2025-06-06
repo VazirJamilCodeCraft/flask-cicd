@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/VazirJamilCodeCraft/python-cicd-demo.git'
+                git credentialsId: 'github-token', url: 'https://github.com/VazirJamilCodeCraft/python-cicd-demo.git'
             }
         }
 
