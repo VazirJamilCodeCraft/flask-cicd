@@ -1,14 +1,14 @@
-# Flask CI/CD Demo App
+# Python CI/CD Demo (No Flask)
 
-A simple Flask app deployed using Jenkins CI/CD on AWS EC2.
+A simple Python script with greeting function.
 
-## Endpoints:
-- `/` → Home page
-- `/status` → JSON response for CI/CD check
+## Files:
+- `main.py`: Contains greeting function
+- `test_main.py`: Unit test using pytest
+- `Jenkinsfile`: CI/CD steps
+- `requirements.txt`: Lists pytest as dependency
 
-## Setup
+## How to Run Locally
 
-1. Clone the repo
-2. Install dependencies with `pip install -r requirements.txt`
-3. Run app with `python app.py`
-
+```bash
+python3 main.py
