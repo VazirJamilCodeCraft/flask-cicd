@@ -2,18 +2,17 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('Clone') {
             steps {
-                git 'https://github.com/VazirJamilCodeCraft/flask-cicd.git'
+                git 'https://github.com/VazirJamilCodeCraft/python-cicd-demo.git'
             }
         }
 
-        stage('Set Up Virtual Environment') {
+        stage('Install Dependencies') {
             steps {
                 sh '''
                 python3 -m venv venv
                 . venv/bin/activate
-                pip install --upgrade pip
                 pip install -r requirements.txt
                 '''
             }
@@ -23,16 +22,17 @@ pipeline {
             steps {
                 sh '''
                 . venv/bin/activate
-                pytest test_app.py
+                pytest test_main.py
                 '''
             }
         }
 
-        stage('Deploy App') {
+        stage('Run Script') {
             steps {
+                input message: "Enter name for greeting", parameters: [string(name: 'USERNAME', defaultValue: 'Jammie', description: 'Enter your name')]
                 sh '''
-                pkill -f app.py || true
-                nohup venv/bin/python app.py > app.log 2>&1 &
+                . venv/bin/activate
+                echo "$USERNAME" | python3 main.py
                 '''
             }
         }
